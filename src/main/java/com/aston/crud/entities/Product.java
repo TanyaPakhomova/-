@@ -1,10 +1,9 @@
-package com.aston.crud.entity;
+package com.aston.crud.entities;
 
 public class Product {
 
     private int id;
     private String name;
-    private String description;
     private double price;
     private User user;
 
