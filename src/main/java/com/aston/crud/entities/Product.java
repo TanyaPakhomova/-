@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Product {
 
-    private int id;
-    private String name;
-    private double price;
-    private int categoryId;
+    private final int id;
+    private final String name;
+    private final double price;
+    private final int categoryId;
 
     public Product(int id, String name, double price, int categoryId){
         this.id = id;
@@ -54,6 +54,4 @@ public class Product {
                 ", categoryId=" + categoryId +
                 '}';
     }
-
-    // Constructors, getters, and setters
 }

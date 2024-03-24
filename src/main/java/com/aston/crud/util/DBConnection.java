@@ -14,25 +14,16 @@ public class DBConnection {
 
     private DBConnection() {}
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
         if (connection == null) {
-            try {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Failed to connect to the database");
-            }
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
         }
         return connection;
     }
 
-    public static void closeConnection(Connection connection) {
+    public static void closeConnection(Connection connection) throws SQLException {
         if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            connection.close();
         }
     }
 }

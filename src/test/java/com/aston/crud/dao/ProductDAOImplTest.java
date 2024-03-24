@@ -1,7 +1,6 @@
 package com.aston.crud.dao;
 
 import com.aston.crud.entities.Product;
-import com.aston.crud.entities.User;
 import com.aston.crud.util.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,19 +18,20 @@ class ProductDAOImplTest {
     private ProductDAOImpl productDAO;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws SQLException {
         createTables();
         insertDataIntoTables();
+
+        productDAO = new ProductDAOImpl();
     }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown() throws SQLException {
         dropTables();
     }
 
     @Test
-    void testGetProductById() {
-        productDAO = new ProductDAOImpl();
+    void testGetProductById() throws SQLException {
         Product product1 = new Product(1, "macbook1", 56.0, 1);
         Product product2 = new Product(2, "macbook2", 53.0, 1);
         productDAO.addProduct(product1);
@@ -44,8 +44,7 @@ class ProductDAOImplTest {
     }
 
     @Test
-    void testGetAllProducts() {
-        productDAO = new ProductDAOImpl();
+    void testGetAllProducts() throws SQLException {
         Product product1 = new Product(1, "macbook1", 56.0, 1);
         Product product2 = new Product(2, "macbook2", 53.0, 1);
         productDAO.addProduct(product1);
@@ -59,13 +58,12 @@ class ProductDAOImplTest {
 
 
     @Test
-    void testUpdateProductById() {
-        productDAO = new ProductDAOImpl();
+    void testUpdateProductById() throws SQLException {
         Product product1 = new Product(1, "macbook1", 56.0, 1);
         Product product2 = new Product(2, "macbook2", 53.0, 1);
         productDAO.addProduct(product1);
         productDAO.addProduct(product2);
-        productDAO.updateProductById(product2);
+        productDAO.updateProduct(product2);
 
         List<Product> expectedProducts = Arrays.asList(product1, product2);
         List<Product> actualProducts = productDAO.getAllProducts();
@@ -74,8 +72,7 @@ class ProductDAOImplTest {
     }
 
     @Test
-    void testDeleteProductById() {
-        productDAO = new ProductDAOImpl();
+    void testDeleteProductById() throws SQLException {
         Product product1 = new Product(1, "macbook1", 56.0, 1);
         Product product2 = new Product(2, "macbook2", 53.0, 1);
         Product product3 = new Product(3, "macbook2", 55.0, 2);
@@ -90,10 +87,9 @@ class ProductDAOImplTest {
         assertEquals(expectedProducts, actualProducts);
     }
 
-    private void createTables() {
+    private void createTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        try (
-                Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             // Create users table
             statement.executeUpdate("CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL)");
 
@@ -112,28 +108,21 @@ class ProductDAOImplTest {
                     "user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users(id))");
 
             System.out.println("Tables created successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
-    private void insertDataIntoTables(){
+    private void insertDataIntoTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        try(
-                Statement statement = connection.createStatement()) {
+        try(Statement statement = connection.createStatement()) {
             statement.executeUpdate("INSERT INTO categories (name) VALUES ('Electronics');\n" +
                     "INSERT INTO categories (name) VALUES ('Clothing');\n" +
                     "INSERT INTO categories (name) VALUES ('Books');");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-
     }
 
-    private void dropTables() {
+    private void dropTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        try (
-                Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             // Drop tables if they exist
             statement.executeUpdate("DROP TABLE IF EXISTS addresses");
             statement.executeUpdate("DROP TABLE IF EXISTS products");
@@ -141,8 +130,6 @@ class ProductDAOImplTest {
             statement.executeUpdate("DROP TABLE IF EXISTS users");
 
             System.out.println("Tables dropped successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

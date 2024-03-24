@@ -5,32 +5,30 @@ import com.aston.crud.util.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.sql.*;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
 
 public class UserDAOImplTest {
     private UserDAOImpl userDAO;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws SQLException {
         createTables();
+
+        userDAO = new UserDAOImpl();
     }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown() throws SQLException {
         dropTables();
     }
 
     @Test
     public void testGetUserById() throws SQLException {
-        userDAO = new UserDAOImpl();
         User user1 = new User(1, "testuser1", "test1@example.com");
         User user2 = new User(2, "testuser2", "test2@example.com");
         userDAO.addUser(user1);
@@ -43,8 +41,7 @@ public class UserDAOImplTest {
     }
 
     @Test
-    public void testGetAllUsers() {
-        userDAO = new UserDAOImpl();
+    public void testGetAllUsers() throws SQLException {
         User user1 = new User(1, "testuser1", "test1@example.com");
         User user2 = new User(2, "testuser2", "test2@example.com");
         userDAO.addUser(user1);
@@ -58,8 +55,7 @@ public class UserDAOImplTest {
     }
 
     @Test
-    public void testUpdateUserById(){
-        userDAO = new UserDAOImpl();
+    public void testUpdateUserById() throws SQLException {
         User user1 = new User(1, "testuser1", "test1@example.com");
         User user2 = new User(2, "testuser2", "test2@example.com");
         User user3 = new User(3, "testuser3", "test3@example.com");
@@ -67,7 +63,7 @@ public class UserDAOImplTest {
         userDAO.addUser(user1);
         userDAO.addUser(user2);
         userDAO.addUser(user3);
-        userDAO.updateUserById(user3);
+        userDAO.updateUser(user3);
 
         List<User> expectedUsers = Arrays.asList(user1, user2, user3);
         List<User> actualUsers = userDAO.getAllUsers();
@@ -76,8 +72,7 @@ public class UserDAOImplTest {
     }
 
     @Test
-    public void testDeleteUserById(){
-        userDAO = new UserDAOImpl();
+    public void testDeleteUserById() throws SQLException {
         User user1 = new User(1, "testuser1", "test1@example.com");
         User user2 = new User(2, "testuser2", "test2@example.com");
         User user3 = new User(3, "testuser3", "test3@example.com");
@@ -91,13 +86,11 @@ public class UserDAOImplTest {
         List<User> actualUsers = userDAO.getAllUsers();
 
         assertEquals(expectedUsers, actualUsers);
-
     }
 
-    private void createTables() {
+    private void createTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        try (
-             Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             // Create users table
             statement.executeUpdate("CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL)");
 
@@ -116,15 +109,12 @@ public class UserDAOImplTest {
                     "user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users(id))");
 
             System.out.println("Tables created successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
-    private void dropTables() {
+    private void dropTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        try (
-             Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             // Drop tables if they exist
             statement.executeUpdate("DROP TABLE IF EXISTS addresses");
             statement.executeUpdate("DROP TABLE IF EXISTS products");
@@ -132,9 +122,6 @@ public class UserDAOImplTest {
             statement.executeUpdate("DROP TABLE IF EXISTS users");
 
             System.out.println("Tables dropped successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
-
 }

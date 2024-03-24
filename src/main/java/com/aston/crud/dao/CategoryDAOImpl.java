@@ -9,11 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDAOImpl implements CategoryDAO {
+    private final Connection connection;
+
+    public CategoryDAOImpl() throws SQLException {
+        connection = DBConnection.getConnection();
+    }
 
     @Override
-    public Category getCategoryById(int id) {
-        // Implement logic to fetch user by ID from the database
-        Connection connection = DBConnection.getConnection();
+    public Category getCategoryById(int id) throws SQLException {
         String query = "SELECT * FROM categories WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
@@ -21,15 +24,12 @@ public class CategoryDAOImpl implements CategoryDAO {
             if (resultSet.next()) {
                 return extractCategoryFromResultSet(resultSet);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
 
     @Override
-    public List<Category> getAllCategories() {
-        Connection connection = DBConnection.getConnection();
+    public List<Category> getAllCategories() throws SQLException {
         List<Category> categories = new ArrayList<>();
         String query = "SELECT * FROM categories";
         try (Statement statement = connection.createStatement();
@@ -37,41 +37,30 @@ public class CategoryDAOImpl implements CategoryDAO {
             while (resultSet.next()) {
                 categories.add(extractCategoryFromResultSet(resultSet));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return categories;
     }
 
     @Override
-    public void addCategory(Category category) {
-        Connection connection = DBConnection.getConnection();
+    public void addCategory(Category category) throws SQLException {
         String query = "INSERT INTO categories (name) VALUES (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, category.getName());
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
     public void updateCategoryById(Category category) {
-        // Implement logic to update a category in the database
-        // Similar to UserDAOImpl.updateUser method
     }
 
     @Override
-    public void deleteCategoryById(int id) {
-        Connection connection = DBConnection.getConnection();
+    public void deleteCategoryById(int id) throws SQLException {
         String query = "DELETE FROM categories WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-
     }
 
     private Category extractCategoryFromResultSet(ResultSet resultSet) throws SQLException {

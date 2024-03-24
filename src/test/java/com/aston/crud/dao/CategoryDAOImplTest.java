@@ -19,18 +19,18 @@ class CategoryDAOImplTest {
     private CategoryDAOImpl categoryDAO;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws SQLException {
         createTables();
+        categoryDAO = new CategoryDAOImpl();
     }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown() throws SQLException {
         dropTables();
     }
 
     @Test
-    void testGetCategoryById() {
-        categoryDAO = new CategoryDAOImpl();
+    void testGetCategoryById() throws SQLException {
         Category category1 = new Category(1, "Electronics");
         Category category2 = new Category(2, "Clothing");
         Category category3 = new Category(3, "Books");
@@ -46,8 +46,7 @@ class CategoryDAOImplTest {
     }
 
     @Test
-    void testGetAllCategories() {
-        categoryDAO = new CategoryDAOImpl();
+    void testGetAllCategories() throws SQLException {
         Category category1 = new Category(1, "Electronics");
         Category category2 = new Category(2, "Clothing");
         Category category3 = new Category(3, "Books");
@@ -68,8 +67,7 @@ class CategoryDAOImplTest {
     }
 
     @Test
-    void deleteCategoryById() {
-        categoryDAO = new CategoryDAOImpl();
+    void deleteCategoryById() throws SQLException {
         Category category1 = new Category(1, "Electronics");
         Category category2 = new Category(2, "Clothing");
         Category category3 = new Category(3, "Books");
@@ -85,10 +83,9 @@ class CategoryDAOImplTest {
         assertEquals(expectedCategory, actualCategories);
     }
 
-    private void createTables() {
+    private void createTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        try (
-                Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             // Create users table
             statement.executeUpdate("CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL)");
 
@@ -107,15 +104,12 @@ class CategoryDAOImplTest {
                     "user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users(id))");
 
             System.out.println("Tables created successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
-    private void dropTables() {
+    private void dropTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        try (
-                Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             // Drop tables if they exist
             statement.executeUpdate("DROP TABLE IF EXISTS addresses");
             statement.executeUpdate("DROP TABLE IF EXISTS products");
@@ -123,8 +117,6 @@ class CategoryDAOImplTest {
             statement.executeUpdate("DROP TABLE IF EXISTS users");
 
             System.out.println("Tables dropped successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

@@ -9,10 +9,14 @@ import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
+    private final Connection connection;
+
+    public UserDAOImpl() throws SQLException {
+        connection = DBConnection.getConnection();
+    }
+
     @Override
-    public User getUserById(int id) {
-        // Implement logic to fetch user by ID from the database
-        Connection connection = DBConnection.getConnection();
+    public User getUserById(int id) throws SQLException {
         String query = "SELECT * FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
@@ -20,16 +24,12 @@ public class UserDAOImpl implements UserDAO {
             if (resultSet.next()) {
                 return extractUserFromResultSet(resultSet);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
 
     @Override
-    public List<User> getAllUsers() {
-        // Implement logic to fetch all users from the database
-        Connection connection = DBConnection.getConnection();
+    public List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users";
         try (Statement statement = connection.createStatement();
@@ -37,51 +37,37 @@ public class UserDAOImpl implements UserDAO {
             while (resultSet.next()) {
                 users.add(extractUserFromResultSet(resultSet));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return users;
     }
 
     @Override
-    public void addUser(User user) {
-        // Implement logic to add a user to the database
-        Connection connection = DBConnection.getConnection();
+    public void addUser(User user) throws SQLException {
         String query = "INSERT INTO users (username, email) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getEmail());
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
-    public void updateUserById(User user) {
-        // Implement logic to update a user in the database
-        Connection connection = DBConnection.getConnection();
+    public void updateUser(User user) throws SQLException {
         String query = "UPDATE users SET username = ?, email = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getEmail());
             statement.setInt(3, user.getId());
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
-    public void deleteUserById(int id) {
-        // Implement logic to delete a user from the database
-        Connection connection = DBConnection.getConnection();
+    public void deleteUserById(int id) throws SQLException {
         String query = "DELETE FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

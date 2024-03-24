@@ -3,12 +3,12 @@ package com.aston.crud.entities;
 import java.util.Objects;
 
 public class Address {
-    private int id;
-    private String street;
-    private String city;
-    private String state;
-    private String postalCode;
-    private int userId;
+    private final int id;
+    private final String street;
+    private final String city;
+    private final String state;
+    private final String postalCode;
+    private final int userId;
 
     public Address(int id, String street, String city, String state, String postalCode, int userId) {
         this.id = id;
