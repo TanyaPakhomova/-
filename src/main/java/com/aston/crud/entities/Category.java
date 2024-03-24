@@ -6,12 +6,10 @@ public class Category {
 
     private final int id;
     private final String name;
-    private final List<Product> products;
 
-    public Category(int id, String name, List<Product> products) {
+    public Category(int id, String name) {
         this.id = id;
         this.name = name;
-        this.products = products;
     }
 
     // Constructors, getters, and setters
