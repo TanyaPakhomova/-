@@ -1,7 +1,7 @@
 package com.aston.crud.dao;
 
-import com.aston.crud.entities.Product;
-import com.aston.crud.entities.User;
+import com.aston.crud.entities.Address;
+import com.aston.crud.entities.Category;
 import com.aston.crud.util.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,14 +10,11 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProductDAOImplTest {
-    private ProductDAOImpl productDAO;
-
+class AddressDAOImplTest {
+    private AddressDAOImpl addressDAO;
     @BeforeEach
     public void setUp() {
         createTables();
@@ -30,66 +27,33 @@ class ProductDAOImplTest {
     }
 
     @Test
-    void testGetProductById() {
-        productDAO = new ProductDAOImpl();
-        Product product1 = new Product(1, "macbook1", 56.0, 1);
-        Product product2 = new Product(2, "macbook2", 53.0, 1);
-        productDAO.addProduct(product1);
-        productDAO.addProduct(product2);
+    void testGetAddressById() {
+        addressDAO = new AddressDAOImpl();
+        Address address1 = new Address(1,"123 Main St", "New York", "NY", "10001", 1);
+        Address address2 = new Address(2,"456 Elm St'", "Los Angeles", "CA", "90001'", 2);
+        Address address3 = new Address(3,"789 Oak St", "Chicago", "IL", "60001", 3);
 
-        Product expectedProduct = product1;
-        Product actualProduct = productDAO.getProductById(1);
+        addressDAO.addAddress(address1);
+        addressDAO.addAddress(address2);
+        addressDAO.addAddress(address3);
 
-        assertEquals(expectedProduct, actualProduct);
+        Address expectedAddress = address2;
+        Address actualAddress = addressDAO.getAddressById(2);
+
+        assertEquals(expectedAddress, actualAddress);
     }
 
     @Test
-    void testGetAllProducts() {
-        productDAO = new ProductDAOImpl();
-        Product product1 = new Product(1, "macbook1", 56.0, 1);
-        Product product2 = new Product(2, "macbook2", 53.0, 1);
-        productDAO.addProduct(product1);
-        productDAO.addProduct(product2);
-
-        List<Product> expectedProducts = Arrays.asList(product1, product2);
-        List<Product> actualProducts = productDAO.getAllProducts();
-
-        assertEquals(expectedProducts, actualProducts);
-    }
-
-
-    @Test
-    void testUpdateProductById() {
-        productDAO = new ProductDAOImpl();
-        Product product1 = new Product(1, "macbook1", 56.0, 1);
-        Product product2 = new Product(2, "macbook2", 53.0, 1);
-        productDAO.addProduct(product1);
-        productDAO.addProduct(product2);
-        productDAO.updateProductById(product2);
-
-        List<Product> expectedProducts = Arrays.asList(product1, product2);
-        List<Product> actualProducts = productDAO.getAllProducts();
-
-        assertEquals(expectedProducts, actualProducts);
+    void testGetAllAddresses() {
     }
 
     @Test
-    void testDeleteProductById() {
-        productDAO = new ProductDAOImpl();
-        Product product1 = new Product(1, "macbook1", 56.0, 1);
-        Product product2 = new Product(2, "macbook2", 53.0, 1);
-        Product product3 = new Product(3, "macbook2", 55.0, 2);
-        productDAO.addProduct(product1);
-        productDAO.addProduct(product2);
-        productDAO.addProduct(product3);
-
-        List<Product> expectedProducts = Arrays.asList(product1,product3);
-        productDAO.deleteProductById(2);
-        List<Product> actualProducts = productDAO.getAllProducts();
-
-        assertEquals(expectedProducts, actualProducts);
+    void testGetAddressesByUserId() {
     }
 
+    @Test
+    void testDeleteAddressById() {
+    }
     private void createTables() {
         Connection connection = DBConnection.getConnection();
         try (
@@ -116,7 +80,6 @@ class ProductDAOImplTest {
             e.printStackTrace();
         }
     }
-
     private void insertDataIntoTables(){
         Connection connection = DBConnection.getConnection();
         try(

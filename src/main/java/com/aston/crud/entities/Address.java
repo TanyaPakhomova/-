@@ -7,15 +7,15 @@ public class Address {
     private String street;
     private String city;
     private String state;
-    private String zipCode;
+    private String postalCode;
     private int userId;
 
-    public Address(int id, String street, String city, String state, String zipCode, int userId) {
+    public Address(int id, String street, String city, String state, String postalCode, int userId) {
         this.id = id;
         this.street = street;
         this.city = city;
         this.state = state;
-        this.zipCode = zipCode;
+        this.postalCode = postalCode;
         this.userId = userId;
     }
 
@@ -35,12 +35,25 @@ public class Address {
         return state;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getPostalCode() {
+        return postalCode;
     }
 
     public int getUserId() {
         return userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return id == address.id && userId == address.userId && Objects.equals(street, address.street) && Objects.equals(city, address.city) && Objects.equals(state, address.state) && Objects.equals(postalCode, address.postalCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, street, city, state, postalCode, userId);
     }
 
     @Override
@@ -50,22 +63,9 @@ public class Address {
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", zipCode='" + zipCode + '\'' +
+                ", postalCode='" + postalCode + '\'' +
                 ", userId=" + userId +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Address address = (Address) o;
-        return id == address.id && userId == address.userId && Objects.equals(street, address.street) && Objects.equals(city, address.city) && Objects.equals(state, address.state) && Objects.equals(zipCode, address.zipCode);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, street, city, state, zipCode, userId);
     }
 }
 

@@ -59,15 +59,30 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void updateProduct(Product product) {
-        // Implement logic to update a product in the database
-        // Similar to UserDAOImpl.updateUser method
+    public void updateProductById(Product product) {
+        Connection connection = DBConnection.getConnection();
+        String query = "UPDATE products SET username = ?, email = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
+            statement.setInt(3, product.getCategoryId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void deleteProduct(int id) {
-        // Implement logic to delete a product from the database
-        // Similar to UserDAOImpl.deleteUser method
+    public void deleteProductById(int id) {
+        Connection connection = DBConnection.getConnection();
+        String query = "DELETE FROM products WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private Product extractProductFromResultSet(ResultSet resultSet) throws SQLException {

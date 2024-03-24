@@ -111,8 +111,8 @@ public class UserDAOImplTest {
 
             // Create addresses table with foreign key constraint
             statement.executeUpdate("CREATE TABLE addresses (id SERIAL PRIMARY KEY, " +
-                    "street_address VARCHAR(255) NOT NULL, city VARCHAR(100) NOT NULL, " +
-                    "state VARCHAR(100), postal_code VARCHAR(20) NOT NULL, country VARCHAR(100) NOT NULL, " +
+                    "street VARCHAR(255) NOT NULL, city VARCHAR(100) NOT NULL, " +
+                    "state VARCHAR(100), postal_code VARCHAR(20) NOT NULL, " +
                     "user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users(id))");
 
             System.out.println("Tables created successfully.");

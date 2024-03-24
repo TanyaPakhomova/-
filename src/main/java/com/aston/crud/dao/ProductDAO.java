@@ -7,6 +7,6 @@ public interface ProductDAO {
     Product getProductById(int id);
     List<Product> getAllProducts();
     void addProduct(Product product);
-    void updateProduct(Product product);
-    void deleteProduct(int id);
+    void updateProductById(Product product);
+    void deleteProductById(int id);
 }

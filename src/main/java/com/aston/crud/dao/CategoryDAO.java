@@ -8,6 +8,6 @@ public interface CategoryDAO {
     Category getCategoryById(int id);
     List<Category> getAllCategories();
     void addCategory(Category category);
-    void updateCategory(Category category);
-    void deleteCategory(int id);
+    void updateCategoryById(Category category);
+    void deleteCategoryById(int id);
 }

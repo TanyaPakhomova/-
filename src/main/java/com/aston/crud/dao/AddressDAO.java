@@ -9,5 +9,5 @@ public interface AddressDAO {
     List<Address> getAllAddresses();
     List<Address> getAddressesByUserId(int userId);
     void addAddress(Address address);
-    void deleteAddress(int id);
+    void deleteAddressById(int id);
 }
