@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserDAOImplTest {
     private UserDAOImpl userDAO;
@@ -85,6 +86,59 @@ public class UserDAOImplTest {
         List<User> actualUsers = userDAO.getAllUsers();
 
         assertEquals(expectedUsers, actualUsers);
+    }
+
+    @Test
+    public void testAddUserWithEmptyUsername() throws SQLException {
+        User user = new User(1, "", "test1@example.com");
+
+        assertThrows(IllegalArgumentException.class, () -> userDAO.addUser(user));
+    }
+
+    @Test
+    public void testAddUserWithMaxUsernameLength() throws SQLException {
+        String maxUsername = "a".repeat(50);
+        User user = new User(1, maxUsername, "test1@example.com");
+        userDAO.addUser(user);
+
+        User retrievedUser = userDAO.getUserById(1);
+
+        assertEquals(maxUsername, retrievedUser.getUsername());
+    }
+
+    @Test
+    public void testAddUserWithEmptyEmail() throws SQLException {
+        User user = new User(1, "testuser1", "");
+
+        assertThrows(IllegalArgumentException.class, () -> userDAO.addUser(user));
+    }
+
+    @Test
+    public void testAddUserWithMaxEmailLength() throws SQLException {
+        String maxEmail = "a".repeat(100);
+        User user = new User(1, "testuser1", maxEmail);
+        userDAO.addUser(user);
+        User retrievedUser = userDAO.getUserById(1);
+
+        assertEquals(maxEmail, retrievedUser.getEmail());
+    }
+
+    @Test
+    public void testGetUserByNegativeId() throws SQLException {
+        assertThrows(IllegalArgumentException.class, () -> userDAO.getUserById(-1));
+    }
+
+    @Test
+    public void testUpdateNonExistentUser() throws SQLException {
+        User nonExistingUser = new User(9999, "nonexistinguser", "nonexisting@example.com");
+
+        assertThrows(IllegalArgumentException.class, () -> userDAO.updateUser(nonExistingUser));
+    }
+
+    @Test
+    public void testDeleteNonExistentUser() throws SQLException {
+        int nonExistingUserId = 9999;
+        assertThrows(IllegalArgumentException.class, () -> userDAO.deleteUserById(nonExistingUserId));
     }
 
     private void createTables() throws SQLException {

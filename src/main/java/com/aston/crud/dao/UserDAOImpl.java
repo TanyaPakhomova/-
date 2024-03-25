@@ -17,6 +17,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserById(int id) throws SQLException {
+        if (id < 0) {
+            throw new IllegalArgumentException("ID cannot be negative");
+        }
         String query = "SELECT * FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
@@ -43,6 +46,12 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(User user) throws SQLException {
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be empty");
+        }
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be empty");
+        }
         String query = "INSERT INTO users (username, email) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getUsername());
@@ -53,6 +62,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void updateUser(User user) throws SQLException {
+        int userId = user.getId();
+
+        if (getUserById(userId) == null) {
+            throw new IllegalArgumentException("User with ID " + userId + " does not exist");
+        }
         String query = "UPDATE users SET username = ?, email = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getUsername());
@@ -64,6 +78,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void deleteUserById(int id) throws SQLException {
+        if (getUserById(id) == null) {
+            throw new IllegalArgumentException("User with ID " + id + " does not exist");
+        }
         String query = "DELETE FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
