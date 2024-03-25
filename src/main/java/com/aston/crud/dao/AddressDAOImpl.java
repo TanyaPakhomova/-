@@ -59,6 +59,9 @@ public class AddressDAOImpl implements AddressDAO {
 
     @Override
     public void addAddress(Address address) throws SQLException {
+        if (address.getUserId() <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
         String query = "INSERT INTO addresses (street, city, state, postal_code, user_id) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, address.getStreet());
@@ -72,6 +75,9 @@ public class AddressDAOImpl implements AddressDAO {
 
     @Override
     public void deleteAddressById(int id) throws SQLException {
+        if (getAddressById(id) == null) {
+            throw new IllegalArgumentException("Address with ID " + id + " does not exist");
+        }
         String query = "DELETE FROM addresses WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);

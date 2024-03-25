@@ -80,6 +80,13 @@ class AddressDAOImplTest {
     }
 
     @Test
+    void testDeleteNonExistingAddress() {
+        int nonExistingAddressId = 9999;
+        assertThrows(IllegalArgumentException.class, () -> addressDAO.deleteAddressById(nonExistingAddressId));
+    }
+
+
+    @Test
     void testDeleteAddressById() throws SQLException {
         Address address1 = new Address(1,"123 Main St", "New York", "NY", "10001", 1);
         Address address2 = new Address(2,"456 Elm St'", "Los Angeles", "CA", "90001'", 2);

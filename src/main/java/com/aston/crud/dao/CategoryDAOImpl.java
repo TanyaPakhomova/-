@@ -43,6 +43,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 
     @Override
     public void addCategory(Category category) throws SQLException {
+        if (category.getName().isEmpty()) {
+            throw new IllegalArgumentException("Category name cannot be empty");
+        }
         String query = "INSERT INTO categories (name) VALUES (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, category.getName());
@@ -52,6 +55,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 
     @Override
     public void updateCategoryById(Category category) throws SQLException {
+        if (getCategoryById(category.getId()) == null) {
+            throw new IllegalArgumentException("Category with ID " + category.getId() + " does not exist");
+        }
         String query = "UPDATE categories SET name = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, category.getName());
@@ -62,6 +68,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 
     @Override
     public void deleteCategoryById(int id) throws SQLException {
+        if (getCategoryById(id) == null) {
+            throw new IllegalArgumentException("Category with ID " + id + " does not exist");
+        }
+
         String query = "DELETE FROM categories WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);

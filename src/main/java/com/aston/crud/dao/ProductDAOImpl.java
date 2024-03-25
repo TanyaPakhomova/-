@@ -44,6 +44,9 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void addProduct(Product product) throws SQLException {
+        if (product.getName().isEmpty()) {
+            throw new IllegalArgumentException("Product name cannot be empty");
+        }
         String query = "INSERT INTO products (name, price, category_id) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, product.getName());
@@ -55,6 +58,9 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void updateProduct(Product product) throws SQLException {
+        if (getProductById(product.getId()) == null) {
+            throw new IllegalArgumentException("Product with ID " + product.getId() + " does not exist");
+        }
         String query = "UPDATE products SET name = ?, price = ? WHERE category_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, product.getName());
@@ -66,6 +72,9 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void deleteProductById(int id) throws SQLException {
+        if (getProductById(id) == null) {
+            throw new IllegalArgumentException("Product with ID " + id + " does not exist");
+        }
         String query = "DELETE FROM products WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);

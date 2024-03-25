@@ -91,6 +91,23 @@ class ProductDAOImplTest {
         assertEquals(expectedProducts, actualProducts);
     }
 
+    @Test
+    void testAddProductWithEmptyName() {
+        Product product = new Product(1, "", 56.0, 1);
+        assertThrows(IllegalArgumentException.class, () -> productDAO.addProduct(product));
+    }
+
+    @Test
+    void testUpdateNonExistingProduct() {
+        Product nonExistingProduct = new Product(9999, "NonExistingProduct", 100.0, 1);
+        assertThrows(IllegalArgumentException.class, () -> productDAO.updateProduct(nonExistingProduct));
+    }
+    @Test
+    void testDeleteNonExistingProduct() {
+        int nonExistingProductId = 9999;
+        assertThrows(IllegalArgumentException.class, () -> productDAO.deleteProductById(nonExistingProductId));
+    }
+
     private void createTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
         try (Statement statement = connection.createStatement()) {

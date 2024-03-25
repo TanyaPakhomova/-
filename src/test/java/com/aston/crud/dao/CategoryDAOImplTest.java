@@ -61,7 +61,6 @@ class CategoryDAOImplTest {
         assertEquals(expectedCategories, actualCategories);
     }
 
-
     @Test
     void updateCategoryById() throws SQLException {
         Category category = new Category(1, "Electronics");
@@ -91,6 +90,25 @@ class CategoryDAOImplTest {
 
         assertEquals(expectedCategory, actualCategories);
     }
+
+    @Test
+    void testAddCategoryWithEmptyName() {
+        Category category = new Category(1, "");
+        assertThrows(IllegalArgumentException.class, () -> categoryDAO.addCategory(category));
+    }
+
+    @Test
+    void testUpdateNonExistingCategory() {
+        Category nonExistingCategory = new Category(9999, "NonExistingCategory");
+        assertThrows(IllegalArgumentException.class, () -> categoryDAO.updateCategoryById(nonExistingCategory));
+    }
+
+    @Test
+    void testDeleteNonExistingCategory() {
+        int nonExistingCategoryId = 9999;
+        assertThrows(IllegalArgumentException.class, () -> categoryDAO.deleteCategoryById(nonExistingCategoryId));
+    }
+
 
     private void createTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
