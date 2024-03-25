@@ -4,9 +4,14 @@ import com.aston.crud.entities.Address;
 import com.aston.crud.entities.Category;
 import com.aston.crud.entities.User;
 import com.aston.crud.util.DBConnection;
+import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,10 +21,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Testcontainers
 class AddressDAOImplTest {
     private AddressDAOImpl addressDAO;
+    @Container
+    static PostgreSQLContainer postgresqlContainer = new PostgreSQLContainer<>()
+            .withDatabaseName("postgres")
+            .withUsername("postgres")
+            .withPassword("password");
+
+
     @BeforeEach
     public void setUp() throws SQLException {
+        DBConnection.setDbUrl(postgresqlContainer.getJdbcUrl());
         createTables();
         insertDataIntoTables();
 

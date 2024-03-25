@@ -5,6 +5,9 @@ import com.aston.crud.util.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.sql.*;
 import java.util.Arrays;
@@ -13,11 +16,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Testcontainers
 public class UserDAOImplTest {
     private UserDAOImpl userDAO;
+    @Container
+    static PostgreSQLContainer postgresqlContainer = new PostgreSQLContainer<>()
+            .withDatabaseName("postgres")
+            .withUsername("postgres")
+            .withPassword("password");
 
     @BeforeEach
     public void setUp() throws SQLException {
+        DBConnection.setDbUrl(postgresqlContainer.getJdbcUrl());
         createTables();
 
         userDAO = new UserDAOImpl();

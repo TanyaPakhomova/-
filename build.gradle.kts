@@ -13,6 +13,7 @@ dependencies {
     runtimeOnly ("org.postgresql:postgresql")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.7")
     testImplementation ("org.testcontainers:postgresql:1.16.0")
     implementation ("org.postgresql:postgresql:42.2.24")
     testImplementation ("org.mockito:mockito-core:3.12.4")

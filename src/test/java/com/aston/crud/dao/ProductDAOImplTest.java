@@ -5,6 +5,9 @@ import com.aston.crud.util.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,11 +17,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Testcontainers
 class ProductDAOImplTest {
     private ProductDAOImpl productDAO;
+    @Container
+    static PostgreSQLContainer postgresqlContainer = new PostgreSQLContainer<>()
+            .withDatabaseName("postgres")
+            .withUsername("postgres")
+            .withPassword("password");
 
     @BeforeEach
     public void setUp() throws SQLException {
+        DBConnection.setDbUrl(postgresqlContainer.getJdbcUrl());
         createTables();
         insertDataIntoTables();
 
