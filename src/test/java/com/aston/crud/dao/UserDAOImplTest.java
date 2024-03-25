@@ -56,19 +56,18 @@ public class UserDAOImplTest {
 
     @Test
     public void testUpdateUserById() throws SQLException {
-        User user1 = new User(1, "testuser1", "test1@example.com");
-        User user2 = new User(2, "testuser2", "test2@example.com");
-        User user3 = new User(3, "testuser3", "test3@example.com");
+        User user = new User(1, "testuser1", "test1@example.com");
+        userDAO.addUser(user);
 
-        userDAO.addUser(user1);
-        userDAO.addUser(user2);
-        userDAO.addUser(user3);
-        userDAO.updateUser(user3);
+        user.setUsername("updatedTestUser");
+        user.setEmail("updated@test.com");
+        userDAO.updateUser(user);
 
-        List<User> expectedUsers = Arrays.asList(user1, user2, user3);
-        List<User> actualUsers = userDAO.getAllUsers();
+        User updatedUser = userDAO.getUserById(1);
 
-        assertEquals(expectedUsers, actualUsers);
+        assertEquals("updatedTestUser", updatedUser.getUsername());
+        assertEquals("updated@test.com", updatedUser.getEmail());
+
     }
 
     @Test

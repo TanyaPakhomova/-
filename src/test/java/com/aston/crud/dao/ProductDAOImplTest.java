@@ -59,16 +59,20 @@ class ProductDAOImplTest {
 
     @Test
     void testUpdateProductById() throws SQLException {
-        Product product1 = new Product(1, "macbook1", 56.0, 1);
-        Product product2 = new Product(2, "macbook2", 53.0, 1);
-        productDAO.addProduct(product1);
-        productDAO.addProduct(product2);
-        productDAO.updateProduct(product2);
+        Product product = new Product(1, "macbook1", 56.0, 1);
+        productDAO.addProduct(product);
 
-        List<Product> expectedProducts = Arrays.asList(product1, product2);
-        List<Product> actualProducts = productDAO.getAllProducts();
+        product.setName("Updated MacBook");
+        product.setPrice(60.0);
+        product.setCategoryId(1);
+        productDAO.updateProduct(product);
 
-        assertEquals(expectedProducts, actualProducts);
+        Product updatedProduct = productDAO.getProductById(1);
+
+        assertEquals("Updated MacBook", updatedProduct.getName());
+        assertEquals(60.0, updatedProduct.getPrice());
+        assertEquals(1, updatedProduct.getCategoryId());
+
     }
 
     @Test

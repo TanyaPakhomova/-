@@ -4,21 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd6721a8-5241-4c24-a15a-b84eaf44111b" name="Changes" comment="add tests for ProductDAOImpl">
+    <list default="true" id="fd6721a8-5241-4c24-a15a-b84eaf44111b" name="Changes" comment="Refactor code: throw exceptions instead of printing sacktrace">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/AddressController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/CategoryController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/ProductController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/AddressDAOImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/CategoryDAOImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/AddressDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/AddressDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/AddressDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/AddressDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/CategoryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/CategoryDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/CategoryDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/ProductDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/dao/ProductDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/entities/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/entities/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/entities/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/entities/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/entities/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/AddressDAOImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/AddressDAOImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/CategoryDAOImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/CategoryDAOImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/ProductDAOImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/ProductDAOImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/UserDAOImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/dao/UserDAOImplTest.java" afterDir="false" />
     </list>
@@ -68,15 +68,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.AddressDAOImplTest.executor": "Run",
     "Gradle.AddressDAOImplTest.testDeleteAddressById.executor": "Run",
     "Gradle.AddressDAOImplTest.testGetAddressById.executor": "Run",
+    "Gradle.AddressDAOImplTest.testGetAddressesByUserId.executor": "Run",
+    "Gradle.AddressDAOImplTest.testGetAllAddresses.executor": "Run",
     "Gradle.CategoryDAOImplTest.deleteCategoryById.executor": "Run",
+    "Gradle.CategoryDAOImplTest.executor": "Run",
     "Gradle.CategoryDAOImplTest.testGetAllCategories.executor": "Run",
     "Gradle.CategoryDAOImplTest.testGetCategoryById.executor": "Run",
+    "Gradle.CategoryDAOImplTest.updateCategoryById.executor": "Run",
     "Gradle.ProductDAOImplTest.getAllProducts.executor": "Run",
     "Gradle.ProductDAOImplTest.getProductById.executor": "Run",
     "Gradle.ProductDAOImplTest.testDeleteProductById.executor": "Run",
     "Gradle.ProductDAOImplTest.testUpdateProductById.executor": "Run",
+    "Gradle.Tests in 'crudAston.test'.executor": "Run",
+    "Gradle.UserDAOImplTest.testGetAllUsers.executor": "Run",
     "Gradle.UserDAOImplTest.testGetUserById.executor": "Run",
     "Gradle.UserDAOImplTest.testUpdateUserById.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -86,6 +93,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -97,8 +105,8 @@
       <recent name="com.aston.crud.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AddressDAOImplTest.testGetAddressById">
-    <configuration name="AddressDAOImplTest.testDeleteAddressById" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.Tests in 'crudAston.test'">
+    <configuration name="AddressDAOImplTest.testGetAddressesByUserId" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -111,7 +119,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.aston.crud.dao.AddressDAOImplTest.testDeleteAddressById&quot;" />
+            <option value="&quot;com.aston.crud.dao.AddressDAOImplTest.testGetAddressesByUserId&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -122,7 +130,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="AddressDAOImplTest.testGetAddressById" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CategoryDAOImplTest.updateCategoryById" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -135,7 +143,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.aston.crud.dao.AddressDAOImplTest.testGetAddressById&quot;" />
+            <option value="&quot;com.aston.crud.dao.CategoryDAOImplTest.updateCategoryById&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -146,7 +154,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CategoryDAOImplTest.deleteCategoryById" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ProductDAOImplTest.testUpdateProductById" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -159,7 +167,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.aston.crud.dao.CategoryDAOImplTest.deleteCategoryById&quot;" />
+            <option value="&quot;com.aston.crud.dao.ProductDAOImplTest.testUpdateProductById&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -170,7 +178,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CategoryDAOImplTest.testGetAllCategories" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'crudAston.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -182,8 +190,6 @@
         <option name="taskNames">
           <list>
             <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.aston.crud.dao.CategoryDAOImplTest.testGetAllCategories&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -194,7 +200,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CategoryDAOImplTest.testGetCategoryById" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="UserDAOImplTest.testUpdateUserById" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -207,7 +213,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.aston.crud.dao.CategoryDAOImplTest.testGetCategoryById&quot;" />
+            <option value="&quot;com.aston.crud.dao.UserDAOImplTest.testUpdateUserById&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -220,11 +226,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AddressDAOImplTest.testGetAddressById" />
-        <item itemvalue="Gradle.AddressDAOImplTest.testDeleteAddressById" />
-        <item itemvalue="Gradle.CategoryDAOImplTest.deleteCategoryById" />
-        <item itemvalue="Gradle.CategoryDAOImplTest.testGetAllCategories" />
-        <item itemvalue="Gradle.CategoryDAOImplTest.testGetCategoryById" />
+        <item itemvalue="Gradle.Tests in 'crudAston.test'" />
+        <item itemvalue="Gradle.UserDAOImplTest.testUpdateUserById" />
+        <item itemvalue="Gradle.ProductDAOImplTest.testUpdateProductById" />
+        <item itemvalue="Gradle.CategoryDAOImplTest.updateCategoryById" />
+        <item itemvalue="Gradle.AddressDAOImplTest.testGetAddressesByUserId" />
       </list>
     </recent_temporary>
   </component>
@@ -261,12 +267,41 @@
       <option name="project" value="LOCAL" />
       <updated>1711299090807</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="wip">
+      <option name="closed" value="true" />
+      <created>1711313326809</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711313326809</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactor code: throw exceptions instead of printing sacktrace">
+      <option name="closed" value="true" />
+      <created>1711314714214</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711314714214</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add DAO implementation" />
     <MESSAGE value="add tests for ProductDAOImpl" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests for ProductDAOImpl" />
+    <MESSAGE value="wip" />
+    <MESSAGE value="Refactor code: throw exceptions instead of printing sacktrace" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor code: throw exceptions instead of printing sacktrace" />
   </component>
 </project>

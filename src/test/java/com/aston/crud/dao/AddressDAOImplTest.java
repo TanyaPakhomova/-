@@ -2,6 +2,7 @@ package com.aston.crud.dao;
 
 import com.aston.crud.entities.Address;
 import com.aston.crud.entities.Category;
+import com.aston.crud.entities.User;
 import com.aston.crud.util.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,15 +48,52 @@ class AddressDAOImplTest {
     }
 
     @Test
-    void testGetAllAddresses() {
+    void testGetAllAddresses() throws SQLException {
+        Address address1 = new Address(1,"123 Main St", "New York", "NY", "10001", 1);
+        Address address2 = new Address(2,"456 Elm St'", "Los Angeles", "CA", "90001'", 2);
+        Address address3 = new Address(3,"789 Oak St", "Chicago", "IL", "60001", 3);
+
+        addressDAO.addAddress(address1);
+        addressDAO.addAddress(address2);
+        addressDAO.addAddress(address3);
+
+        List<Address> expectedAddress = Arrays.asList(address1, address2, address3);
+        List<Address> actualAddress= addressDAO.getAllAddresses();
+
+        assertEquals(expectedAddress, actualAddress);
     }
 
     @Test
-    void testGetAddressesByUserId() {
+    void testGetAddressesByUserId() throws SQLException {
+        Address address1 = new Address(1,"123 Main St", "New York", "NY", "10001", 1);
+        Address address2 = new Address(2,"456 Elm St'", "Los Angeles", "CA", "90001'", 2);
+        Address address3 = new Address(3,"789 Oak St", "Chicago", "IL", "60001", 3);
+
+        addressDAO.addAddress(address1);
+        addressDAO.addAddress(address2);
+        addressDAO.addAddress(address3);
+
+        List<Address> expectedAddress = Arrays.asList(address2);
+        List<Address> actualAddress = addressDAO.getAddressesByUserId(2);
+
+        assertEquals(expectedAddress, actualAddress);
     }
 
     @Test
-    void testDeleteAddressById() {
+    void testDeleteAddressById() throws SQLException {
+        Address address1 = new Address(1,"123 Main St", "New York", "NY", "10001", 1);
+        Address address2 = new Address(2,"456 Elm St'", "Los Angeles", "CA", "90001'", 2);
+        Address address3 = new Address(3,"789 Oak St", "Chicago", "IL", "60001", 3);
+
+        addressDAO.addAddress(address1);
+        addressDAO.addAddress(address2);
+        addressDAO.addAddress(address3);
+
+        List<Address> expectedAddress = Arrays.asList(address1, address2);
+        addressDAO.deleteAddressById(3);
+        List<Address> actualAddress= addressDAO.getAllAddresses();
+
+        assertEquals(expectedAddress, actualAddress);
     }
     private void createTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
@@ -81,9 +121,9 @@ class AddressDAOImplTest {
     private void insertDataIntoTables() throws SQLException {
         Connection connection = DBConnection.getConnection();
         try(Statement statement = connection.createStatement()) {
-            statement.executeUpdate("INSERT INTO categories (name) VALUES ('Electronics');\n" +
-                    "INSERT INTO categories (name) VALUES ('Clothing');\n" +
-                    "INSERT INTO categories (name) VALUES ('Books');");
+            statement.executeUpdate("INSERT INTO users (username, email) VALUES ('jane_smith', 'jane@example.com');\n" +
+                    "INSERT INTO users (username, email) VALUES ('alice_jones', 'alice@example.com');\n" +
+                    "INSERT INTO users (username, email) VALUES ('john_doe', 'john@example.com');");
         }
     }
 

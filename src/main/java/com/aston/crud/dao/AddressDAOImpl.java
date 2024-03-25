@@ -2,6 +2,7 @@ package com.aston.crud.dao;
 
 import com.aston.crud.entities.Address;
 import com.aston.crud.entities.Category;
+import com.aston.crud.entities.User;
 import com.aston.crud.util.DBConnection;
 
 import java.sql.*;
@@ -29,13 +30,31 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public List<Address> getAllAddresses() {
-        return null;
+    public List<Address> getAllAddresses() throws SQLException {
+        List<Address> users = new ArrayList<>();
+        String query = "SELECT * FROM addresses";
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                users.add(extractAddressFromResultSet(resultSet));
+            }
+        }
+        return users;
     }
 
     @Override
-    public List<Address> getAddressesByUserId(int userId) {
-        return null;
+    public List<Address> getAddressesByUserId(int userId) throws SQLException {
+        List<Address> addresses = new ArrayList<>();
+        String query = "SELECT * FROM addresses WHERE user_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    addresses.add(extractAddressFromResultSet(resultSet));
+                }
+            }
+        }
+        return addresses;
     }
 
     @Override
@@ -52,7 +71,12 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public void deleteAddressById(int id) {
+    public void deleteAddressById(int id) throws SQLException {
+        String query = "DELETE FROM addresses WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
     }
 
     private Address extractAddressFromResultSet(ResultSet resultSet) throws SQLException {
@@ -61,7 +85,7 @@ public class AddressDAOImpl implements AddressDAO {
         String city = resultSet.getString("city");
         String state = resultSet.getString("state");
         String postalCode = resultSet.getString("postal_code");
-        int userId = resultSet.getInt("userId");
+        int userId = resultSet.getInt("user_id");
 
         return new Address(id, street, city, state, postalCode, userId);
     }

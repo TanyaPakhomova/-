@@ -51,7 +51,13 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public void updateCategoryById(Category category) {
+    public void updateCategoryById(Category category) throws SQLException {
+        String query = "UPDATE categories SET name = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, category.getName());
+            statement.setInt(2, category.getId());
+            statement.executeUpdate();
+        }
     }
 
     @Override

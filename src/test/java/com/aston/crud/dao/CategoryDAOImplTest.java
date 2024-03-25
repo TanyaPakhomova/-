@@ -63,7 +63,16 @@ class CategoryDAOImplTest {
 
 
     @Test
-    void updateCategoryById() {
+    void updateCategoryById() throws SQLException {
+        Category category = new Category(1, "Electronics");
+        categoryDAO.addCategory(category);
+
+        category.setName("Electronics Updated");
+        categoryDAO.updateCategoryById(category);
+
+        Category updatedCategory = categoryDAO.getCategoryById(1);
+
+        assertEquals(category, updatedCategory);
     }
 
     @Test

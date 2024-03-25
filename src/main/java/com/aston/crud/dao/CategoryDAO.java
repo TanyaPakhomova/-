@@ -9,6 +9,6 @@ public interface CategoryDAO {
     Category getCategoryById(int id) throws SQLException;
     List<Category> getAllCategories() throws SQLException;
     void addCategory(Category category) throws SQLException;
-    void updateCategoryById(Category category);
+    void updateCategoryById(Category category) throws SQLException;
     void deleteCategoryById(int id) throws SQLException;
 }
