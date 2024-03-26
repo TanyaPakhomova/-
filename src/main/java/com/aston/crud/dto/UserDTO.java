@@ -3,14 +3,15 @@ package com.aston.crud.dto;
 import java.util.Objects;
 
 public class UserDTO {
-    private final int id;
+    private int id;
     private String username;
     private String email;
 
-    public UserDTO(int id, String username, String email) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
+    public UserDTO() {
+    }
+
+    public void setId(int id) {
+      this.id = id;
     }
 
     public void setUsername(String username){
@@ -19,6 +20,18 @@ public class UserDTO {
 
     public void setEmail(String email){
         this.email =email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
