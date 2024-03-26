@@ -119,8 +119,8 @@ class ProductDAOImplTest {
     }
 
     private void createTables() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement()) {
             // Create users table
             statement.executeUpdate("CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL)");
 
@@ -143,8 +143,8 @@ class ProductDAOImplTest {
     }
 
     private void insertDataIntoTables() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        try(Statement statement = connection.createStatement()) {
+        try(Connection connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement()) {
             statement.executeUpdate("INSERT INTO categories (name) VALUES ('Electronics');\n" +
                     "INSERT INTO categories (name) VALUES ('Clothing');\n" +
                     "INSERT INTO categories (name) VALUES ('Books');");
@@ -152,8 +152,8 @@ class ProductDAOImplTest {
     }
 
     private void dropTables() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement()) {
             // Drop tables if they exist
             statement.executeUpdate("DROP TABLE IF EXISTS addresses");
             statement.executeUpdate("DROP TABLE IF EXISTS products");

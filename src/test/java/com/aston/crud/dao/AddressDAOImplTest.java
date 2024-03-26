@@ -117,8 +117,8 @@ class AddressDAOImplTest {
         assertEquals(expectedAddress, actualAddress);
     }
     private void createTables() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement()) {
             // Create users table
             statement.executeUpdate("CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL)");
 
@@ -140,8 +140,8 @@ class AddressDAOImplTest {
         }
     }
     private void insertDataIntoTables() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        try(Statement statement = connection.createStatement()) {
+        try(Connection connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement()) {
             statement.executeUpdate("INSERT INTO users (username, email) VALUES ('jane_smith', 'jane@example.com');\n" +
                     "INSERT INTO users (username, email) VALUES ('alice_jones', 'alice@example.com');\n" +
                     "INSERT INTO users (username, email) VALUES ('john_doe', 'john@example.com');");
@@ -149,8 +149,8 @@ class AddressDAOImplTest {
     }
 
     private void dropTables() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement()) {
             // Drop tables if they exist
             statement.executeUpdate("DROP TABLE IF EXISTS addresses");
             statement.executeUpdate("DROP TABLE IF EXISTS products");

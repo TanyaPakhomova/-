@@ -152,8 +152,8 @@ public class UserDAOImplTest {
     }
 
     private void createTables() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement()) {
             // Create users table
             statement.executeUpdate("CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL)");
 
@@ -176,8 +176,8 @@ public class UserDAOImplTest {
     }
 
     private void dropTables() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement()) {
             // Drop tables if they exist
             statement.executeUpdate("DROP TABLE IF EXISTS addresses");
             statement.executeUpdate("DROP TABLE IF EXISTS products");

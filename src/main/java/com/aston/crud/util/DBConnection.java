@@ -10,21 +10,10 @@ public class DBConnection {
     private static final String USER = "postgres";
     private static final String PASSWORD = "password";
 
-    private static Connection connection;
-
     private DBConnection() {}
 
     public static Connection getConnection() throws SQLException {
-        if (connection == null) {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        }
-        return connection;
-    }
-
-    public static void closeConnection(Connection connection) throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
     public static void setDbUrl(String jdbcUrl) {

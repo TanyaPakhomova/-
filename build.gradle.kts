@@ -15,8 +15,9 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.testcontainers:junit-jupiter:1.19.7")
     testImplementation ("org.testcontainers:postgresql:1.16.0")
-    implementation ("org.postgresql:postgresql:42.2.24")
     testImplementation ("org.mockito:mockito-core:3.12.4")
+    implementation ("org.eclipse.jetty:jetty-server:11.0.7")
+    implementation ("org.postgresql:postgresql:42.2.24")
     implementation ("javax.servlet:javax.servlet-api:4.0.1")
     implementation ("com.google.code.gson:gson:2.8.8")
 
