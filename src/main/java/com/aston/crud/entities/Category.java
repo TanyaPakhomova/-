@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Category {
 
-    private final int id;
+    private int id;
     private String name;
 
     public Category(int id, String name) {
@@ -15,6 +15,10 @@ public class Category {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

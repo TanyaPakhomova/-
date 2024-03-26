@@ -3,8 +3,11 @@ package com.aston.crud.dto;
 import java.util.Objects;
 
 public class CategoryDTO {
-    private final int id;
+    private  int id;
     private String name;
+
+    public CategoryDTO(){
+    }
 
     public CategoryDTO(int id, String name) {
         this.id = id;
@@ -18,6 +21,9 @@ public class CategoryDTO {
     public String getName() {
         return name;
     }
+
+    public void setId(Integer id) {
+        this.id = id; }
 
     public void setName(String name) {
         this.name = name;

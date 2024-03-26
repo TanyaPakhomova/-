@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Product {
 
-    private final int id;
+    private  int id;
     private String name;
     private double price;
     private int categoryId;
@@ -39,6 +39,9 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+    public void setId(int productId) {
+        this.id = id;
+    }
 
     public void setCategoryId(int categoryId){
         this.categoryId = categoryId;
@@ -66,4 +69,6 @@ public class Product {
                 ", categoryId=" + categoryId +
                 '}';
     }
+
+
 }

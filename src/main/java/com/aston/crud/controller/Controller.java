@@ -22,9 +22,14 @@ import java.util.List;
 public class Controller extends AbstractHandler {
 
     private final UserController userController;
+    private final ProductController productController;
+
+    private final CategoryController categoryController;
 
     public Controller() throws SQLException {
         userController = new UserController();
+        productController = new ProductController();
+        categoryController = new CategoryController();
     }
 
     @Override
@@ -34,10 +39,16 @@ public class Controller extends AbstractHandler {
                        jakarta.servlet.http.HttpServletResponse httpServletResponse) throws IOException {
         if (s.endsWith("/users") || s.endsWith("/user")) {
             userController.handle(s, request, httpServletRequest, httpServletResponse);
-        } else {
+        }
+        if (s.endsWith("/products") || s.endsWith("/product")) {
+            productController.handle(s, request, httpServletRequest, httpServletResponse);}
+        if (s.endsWith("/categories") || s.endsWith("/category")) {
+            categoryController.handle(s, request, httpServletRequest, httpServletResponse);}
+        else {
             httpServletResponse.setStatus(HttpServletResponse.SC_NOT_FOUND);
             request.setHandled(true);
         }
+
     }
 
     private static void createTables() throws SQLException {

@@ -3,10 +3,14 @@ package com.aston.crud.dto;
 import java.util.Objects;
 
 public class ProductDTO {
-    private final int id;
+    private  int id;
     private String name;
     private double price;
     private int categoryId;
+
+    public ProductDTO(){
+
+    }
 
     public ProductDTO(int id, String name, double price, int categoryId) {
         this.id = id;
@@ -23,19 +27,27 @@ public class ProductDTO {
         return name;
     }
 
-    public double getPrice() {
-        return price;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
     }
 
-    public void setCategoryId(int categoryId){
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
