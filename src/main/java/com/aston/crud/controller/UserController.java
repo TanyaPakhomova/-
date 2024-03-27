@@ -22,11 +22,17 @@ import java.util.List;
 public class UserController extends AbstractHandler {
 
     private final ObjectMapper objectMapper;
-    private final UserDAO userDAO;
+    private  UserDAO userDAO;
 
     public UserController() throws SQLException {
         this.objectMapper = new ObjectMapper();
         this.userDAO = new UserDAOImpl();
+    }
+
+    public UserController(UserDAO userDAO) throws SQLException {
+        this.userDAO = userDAO;
+        this.objectMapper = new ObjectMapper();
+
     }
 
     @Override
@@ -68,6 +74,7 @@ public class UserController extends AbstractHandler {
             User user = userDAO.getUserById(Integer.parseInt(request.getParameter("id")));
             String jsonResponse = objectMapper.writeValueAsString(user);
             httpServletResponse.getWriter().println(jsonResponse);
+            httpServletResponse.setStatus(jakarta.servlet.http.HttpServletResponse.SC_OK);
         } catch (SQLException e) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             httpServletResponse.getWriter().println("Error retrieving users: " + e.getMessage());
@@ -113,9 +120,13 @@ public class UserController extends AbstractHandler {
     }
 
     private void handleUpdateUser(HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws IOException {
+        String body = getRequestBody(request);
+        UserDTO userDTO = objectMapper.readValue(body, UserDTO.class);
+
+        String username = userDTO.getUsername();
+        String email = userDTO.getEmail();
+
         int userId = Integer.parseInt(request.getParameter("id"));
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
 
         if (username == null || email == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

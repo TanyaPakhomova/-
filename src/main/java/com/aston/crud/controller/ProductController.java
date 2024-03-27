@@ -6,8 +6,10 @@ import com.aston.crud.dto.ProductDTO;
 import com.aston.crud.entities.Product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,6 +24,11 @@ public class ProductController extends AbstractHandler {
     public ProductController() throws SQLException {
         this.objectMapper = new ObjectMapper();
         this.productDAO = new ProductDAOImpl();
+    }
+
+    public ProductController(ProductDAO productDAO) {
+        this.objectMapper = new ObjectMapper();
+        this.productDAO = productDAO;
     }
 
     @Override
@@ -72,7 +79,7 @@ public class ProductController extends AbstractHandler {
         }
     }
 
-    private void handleGetProducts(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws IOException {
+    public void handleGetProducts(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws IOException {
         try {
             List<Product> products = productDAO.getAllProducts();
             String jsonResponse = objectMapper.writeValueAsString(products);
