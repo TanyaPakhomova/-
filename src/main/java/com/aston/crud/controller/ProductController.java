@@ -3,6 +3,7 @@ package com.aston.crud.controller;
 import com.aston.crud.dao.ProductDAO;
 import com.aston.crud.dao.ProductDAOImpl;
 import com.aston.crud.dto.ProductDTO;
+import com.aston.crud.dto.UserDTO;
 import com.aston.crud.entities.Product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +13,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -109,14 +111,35 @@ public class ProductController extends AbstractHandler {
         }
     }
 
-    private void handleUpdateProduct(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws IOException {
+    private void handleUpdateProduct(HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws IOException {
+
+        String body = getRequestBody(request);
+        ProductDTO productDTO = objectMapper.readValue(body, ProductDTO.class);
+
+        String name = productDTO.getName();
+        double price = productDTO.getPrice();
+        int categoryId = productDTO.getCategoryId();
+
         int productId = Integer.parseInt(request.getParameter("id"));
-        String body = request.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
-        Product product = objectMapper.readValue(body, Product.class);
-        product.setId(productId);
+        if (name == null || price <= 0 || categoryId <= 0) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().println("Product name, price, and category ID parameters are required");
+            return;
+        }
 
         try {
-            productDAO.updateProduct(product);
+            Product existingProduct = productDAO.getProductById(productId);
+            if (existingProduct == null) {
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                response.getWriter().println("Product with ID " + productId + " not found");
+                return;
+            }
+
+            existingProduct.setName(name);
+            existingProduct.setPrice(price);
+            existingProduct.setCategoryId(categoryId);
+            productDAO.updateProduct(existingProduct);
+
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().println("Product updated successfully");
         } catch (SQLException e) {
@@ -136,5 +159,16 @@ public class ProductController extends AbstractHandler {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().println("Error deleting product: " + e.getMessage());
         }
+    }
+
+    private String getRequestBody(HttpServletRequest request) throws IOException {
+        StringBuilder requestBody = new StringBuilder();
+        BufferedReader reader = request.getReader();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            requestBody.append(line);
+        }
+        reader.close();
+        return requestBody.toString();
     }
 }

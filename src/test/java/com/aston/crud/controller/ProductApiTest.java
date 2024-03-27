@@ -1,7 +1,9 @@
 package com.aston.crud.controller;
 
-import com.aston.crud.dao.AddressDAO;
-import com.aston.crud.entities.Address;
+import com.aston.crud.dao.ProductDAO;
+import com.aston.crud.entities.Category;
+import com.aston.crud.entities.Product;
+import com.aston.crud.entities.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.server.Server;
 import org.junit.jupiter.api.AfterEach;
@@ -22,20 +24,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-public class AddressApiTest {
-
-    private AddressDAO addressDAO;
+public class ProductApiTest {
+    private ProductDAO productDAO;
     private Server server;
     private ObjectMapper objectMapper;
 
-
     @BeforeEach
     void setUp() throws Exception {
-        addressDAO = mock(AddressDAO.class);
+        productDAO = mock(ProductDAO.class);
         objectMapper = new ObjectMapper();
 
         server = new Server(8080);
-        server.setHandler(new Controller(addressDAO));
+        server.setHandler(new Controller(productDAO));
         server.start();
     }
 
@@ -45,12 +45,12 @@ public class AddressApiTest {
     }
 
     @Test
-    void testGetAddressById() throws IOException, InterruptedException, URISyntaxException, SQLException {
-        when(addressDAO.getAddressById(8)).thenReturn(new Address(8, "123 Main St", "New York", "NY", "10001", 1));
+    void testGetCategoryById() throws IOException, InterruptedException, URISyntaxException, SQLException {
+        when(productDAO.getProductById(1)).thenReturn(new Product(1, "MacBook", 599,1));
 
         HttpResponse<String> response = HttpClient.newHttpClient()
                 .send(HttpRequest.newBuilder()
-                                .uri(new URI("http://localhost:8080/address?id=8"))
+                                .uri(new URI("http://localhost:8080/product?id=1"))
                                 .GET()
                                 .build(),
                         HttpResponse.BodyHandlers.ofString()
@@ -58,24 +58,22 @@ public class AddressApiTest {
 
         assertEquals(200, response.statusCode());
         String responseBody = response.body();
-        assertTrue(responseBody.contains("123 Main St"));
-        assertTrue(responseBody.contains("New York"));
-        assertTrue(responseBody.contains("NY"));
-        assertTrue(responseBody.contains("10001"));
+        assertTrue(responseBody.contains("MacBook"));
+        assertTrue(responseBody.contains("599"));
     }
 
     @Test
-    void testGetAllAddresses() throws IOException, InterruptedException, URISyntaxException, SQLException {
-        List<Address> addresses = Arrays.asList(
-                new Address(1,"123 Main St", "New York", "NY", "10001",  1),
-                new Address(2, "456 Elm St", "Los Angeles", "CA", "CA",  2)
+    void testGetAllProducts() throws IOException, InterruptedException, URISyntaxException, SQLException {
+        List<Product> products = Arrays.asList(
+                new Product(1, "MacBook", 599,1),
+                new Product(2, "Book", 59,2)
         );
 
-        when(addressDAO.getAllAddresses()).thenReturn(addresses);
+        when(productDAO.getAllProducts()).thenReturn(products);
 
         HttpResponse<String> response = HttpClient.newHttpClient()
                 .send(HttpRequest.newBuilder()
-                                .uri(new URI("http://localhost:8080/addresses"))
+                                .uri(new URI("http://localhost:8080/products"))
                                 .GET()
                                 .build(),
                         HttpResponse.BodyHandlers.ofString()
@@ -83,24 +81,20 @@ public class AddressApiTest {
 
         assertEquals(200, response.statusCode());
         String responseBody = response.body();
-        assertTrue(responseBody.contains("123 Main St"));
-        assertTrue(responseBody.contains("New York"));
-        assertTrue(responseBody.contains("NY"));
-        assertTrue(responseBody.contains("10001"));
-        assertTrue(responseBody.contains("456 Elm St"));
-        assertTrue(responseBody.contains("Los Angeles"));
-        assertTrue(responseBody.contains("1"));
-        assertTrue(responseBody.contains("2"));
+        assertTrue(responseBody.contains("MacBook"));
+        assertTrue(responseBody.contains("599"));
+        assertTrue(responseBody.contains("Book"));
+        assertTrue(responseBody.contains("59"));
     }
 
     @Test
-    void testAddAddresses() throws IOException, InterruptedException, URISyntaxException, SQLException {
-        Address address = new Address(1,"123 Main St", "New York", "NY", "10001",  1);
+    void testAddProduct() throws IOException, InterruptedException, URISyntaxException, SQLException {
+        Product product = new Product(0,"Book", 59, 2);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("http://localhost:8080/address"))
+                .uri(new URI("http://localhost:8080/product"))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(address)))
+                .POST(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(product)))
                 .build();
 
         HttpResponse<String> response = HttpClient.newHttpClient()
@@ -109,18 +103,19 @@ public class AddressApiTest {
         assertEquals(201, response.statusCode());
 
         String responseBody = response.body();
-        assertTrue(responseBody.contains("Address added successfully"));
+        assertTrue(responseBody.contains("Product added successfully"));
 
-        verify(addressDAO).addAddress(address);
+        verify(productDAO).addProduct(product);
     }
 
     @Test
-    void testDeleteAddress() throws IOException, InterruptedException, URISyntaxException, SQLException {
-        int addressIdToDelete = 1;
+    void testUpdateProduct() throws IOException, InterruptedException, URISyntaxException, SQLException {
+        Product updatedProduct = new Product(1,"BookUpdated", 49, 1);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("http://localhost:8080/user?id=" + addressIdToDelete))
-                .DELETE()
+                .uri(new URI("http://localhost:8080/product?id=1"))
+                .header("Content-Type", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(updatedProduct)))
                 .build();
 
         HttpResponse<String> response = HttpClient.newHttpClient()
@@ -128,6 +123,4 @@ public class AddressApiTest {
 
         assertEquals(404, response.statusCode());
     }
-
-
 }

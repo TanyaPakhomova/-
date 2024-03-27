@@ -1,9 +1,6 @@
 package com.aston.crud.controller;
 
-import com.aston.crud.dao.AddressDAO;
-import com.aston.crud.dao.CategoryDAO;
-import com.aston.crud.dao.UserDAO;
-import com.aston.crud.dao.UserDAOImpl;
+import com.aston.crud.dao.*;
 import com.aston.crud.dto.UserDTO;
 import com.aston.crud.entities.User;
 import com.aston.crud.util.DBConnection;
@@ -53,6 +50,13 @@ public class Controller extends AbstractHandler {
         userController = new UserController();
         productController = new ProductController();
         categoryController = new CategoryController(categoryDAO);
+        addressController = new AddressController();
+    }
+
+    public Controller(ProductDAO productDAO) throws SQLException{
+        userController = new UserController();
+        productController = new ProductController(productDAO);
+        categoryController = new CategoryController();
         addressController = new AddressController();
     }
 
