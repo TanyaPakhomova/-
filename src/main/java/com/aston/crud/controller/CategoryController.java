@@ -23,6 +23,11 @@ public class CategoryController extends AbstractHandler {
         this.categoryDAO = new CategoryDAOImpl();
     }
 
+    public CategoryController(CategoryDAO categoryDAO) {
+        this.categoryDAO = categoryDAO;
+        this.objectMapper = new ObjectMapper();
+    }
+
     @Override
     public void handle(String s,
                        Request request,

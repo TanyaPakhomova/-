@@ -1,6 +1,7 @@
 package com.aston.crud.controller;
 
 import com.aston.crud.dao.AddressDAO;
+import com.aston.crud.dao.CategoryDAO;
 import com.aston.crud.dao.UserDAO;
 import com.aston.crud.dao.UserDAOImpl;
 import com.aston.crud.dto.UserDTO;
@@ -48,6 +49,13 @@ public class Controller extends AbstractHandler {
         addressController = new AddressController(addressDAO);
     }
 
+    public Controller(CategoryDAO categoryDAO) throws SQLException{
+        userController = new UserController();
+        productController = new ProductController();
+        categoryController = new CategoryController(categoryDAO);
+        addressController = new AddressController();
+    }
+
 
     @Override
     public void handle(String s,
@@ -60,9 +68,11 @@ public class Controller extends AbstractHandler {
         }
         if (s.endsWith("/products") || s.endsWith("/product")) {
             productController.handle(s, request, httpServletRequest, httpServletResponse);
+            return;
         }
         if (s.endsWith("/categories") || s.endsWith("/category")) {
             categoryController.handle(s, request, httpServletRequest, httpServletResponse);
+            return;
         }
         if (s.endsWith("/addresses") || s.endsWith("/address")) {
             addressController.handle(s, request, httpServletRequest, httpServletResponse);
