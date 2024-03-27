@@ -3,12 +3,14 @@ package com.aston.crud.dto;
 import java.util.Objects;
 
 public class AddressDTO {
-    private final int id;
-    private final String street;
-    private final String city;
-    private final String state;
-    private final String postalCode;
-    private final int userId;
+    private int id;
+    private String street;
+    private String city;
+    private String state;
+    private String postalCode;
+    private int userId;
+
+    public AddressDTO() { }
 
     public AddressDTO(int id, String street, String city, String state, String postalCode, int userId) {
         this.id = id;
@@ -21,6 +23,30 @@ public class AddressDTO {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getStreet() {

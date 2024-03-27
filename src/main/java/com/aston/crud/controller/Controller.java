@@ -23,13 +23,14 @@ public class Controller extends AbstractHandler {
 
     private final UserController userController;
     private final ProductController productController;
-
     private final CategoryController categoryController;
+    private final AddressController addressController;
 
     public Controller() throws SQLException {
         userController = new UserController();
         productController = new ProductController();
         categoryController = new CategoryController();
+        addressController = new AddressController();
     }
 
     @Override
@@ -41,9 +42,14 @@ public class Controller extends AbstractHandler {
             userController.handle(s, request, httpServletRequest, httpServletResponse);
         }
         if (s.endsWith("/products") || s.endsWith("/product")) {
-            productController.handle(s, request, httpServletRequest, httpServletResponse);}
+            productController.handle(s, request, httpServletRequest, httpServletResponse);
+        }
         if (s.endsWith("/categories") || s.endsWith("/category")) {
-            categoryController.handle(s, request, httpServletRequest, httpServletResponse);}
+            categoryController.handle(s, request, httpServletRequest, httpServletResponse);
+        }
+        if (s.endsWith("/addresses") || s.endsWith("/address")) {
+            addressController.handle(s, request, httpServletRequest, httpServletResponse);
+        }
         else {
             httpServletResponse.setStatus(HttpServletResponse.SC_NOT_FOUND);
             request.setHandled(true);
