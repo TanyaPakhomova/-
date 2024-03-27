@@ -23,6 +23,11 @@ public class AddressController extends AbstractHandler {
         this.addressDAO = new AddressDAOImpl();
     }
 
+    public AddressController(AddressDAO addressDAO) {
+        this.addressDAO = addressDAO;
+        this.objectMapper =new ObjectMapper();
+    }
+
     @Override
     public void handle(String s,
                        Request request,
