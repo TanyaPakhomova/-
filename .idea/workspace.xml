@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd6721a8-5241-4c24-a15a-b84eaf44111b" name="Changes" comment="" />
+    <list default="true" id="fd6721a8-5241-4c24-a15a-b84eaf44111b" name="Changes" comment="Add README">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/dto/AddressDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/dto/AddressDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/AddressApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/AddressApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/CategoryApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/CategoryApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/ProductApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/ProductApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/UserApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/UserApiTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,12 +25,43 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="crudAston" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2dzqpjmGJd8EH1ANPpINw0lH191" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -31,12 +72,203 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.AddressApiTest.testAddAddresses.executor": "Run",
+    "Gradle.AddressApiTest.testDeleteAddress.executor": "Run",
+    "Gradle.AddressApiTest.testGetAddressById.executor": "Run",
+    "Gradle.AddressApiTest.testGetAllAddresses.executor": "Run",
+    "Gradle.AddressDAOImplTest.executor": "Run",
+    "Gradle.AddressDAOImplTest.testDeleteAddressById.executor": "Run",
+    "Gradle.AddressDAOImplTest.testGetAddressById.executor": "Run",
+    "Gradle.AddressDAOImplTest.testGetAddressesByUserId.executor": "Run",
+    "Gradle.AddressDAOImplTest.testGetAllAddresses.executor": "Debug",
+    "Gradle.CategoryApiTest.testAddCategory.executor": "Run",
+    "Gradle.CategoryApiTest.testDeleteCategory.executor": "Run",
+    "Gradle.CategoryApiTest.testGetAllCategory.executor": "Run",
+    "Gradle.CategoryApiTest.testGetCategoryById.executor": "Run",
+    "Gradle.CategoryApiTest.testUpdateCategory.executor": "Run",
+    "Gradle.CategoryDAOImplTest.deleteCategoryById.executor": "Run",
+    "Gradle.CategoryDAOImplTest.executor": "Run",
+    "Gradle.CategoryDAOImplTest.testGetAllCategories.executor": "Run",
+    "Gradle.CategoryDAOImplTest.testGetCategoryById.executor": "Run",
+    "Gradle.CategoryDAOImplTest.updateCategoryById.executor": "Run",
+    "Gradle.ProductApiTest.testAddProduct.executor": "Run",
+    "Gradle.ProductApiTest.testGetAllProducts.executor": "Run",
+    "Gradle.ProductApiTest.testGetCategoryById.executor": "Run",
+    "Gradle.ProductApiTest.testUpdateProduct.executor": "Run",
+    "Gradle.ProductControllerTest.executor": "Run",
+    "Gradle.ProductDAOImplTest.executor": "Run",
+    "Gradle.ProductDAOImplTest.getAllProducts.executor": "Run",
+    "Gradle.ProductDAOImplTest.getProductById.executor": "Run",
+    "Gradle.ProductDAOImplTest.testDeleteProductById.executor": "Run",
+    "Gradle.ProductDAOImplTest.testUpdateProductById.executor": "Run",
+    "Gradle.Tests in 'com.aston.crud.dao'.executor": "Run",
+    "Gradle.Tests in 'crudAston.test'.executor": "Run",
+    "Gradle.UserApiTest.addGetUser.executor": "Run",
+    "Gradle.UserApiTest.executor": "Run",
+    "Gradle.UserApiTest.testAddUser.executor": "Run",
+    "Gradle.UserApiTest.testDeleteUser.executor": "Run",
+    "Gradle.UserApiTest.testGetAllUsers.executor": "Run",
+    "Gradle.UserApiTest.testUpdateUser.executor": "Run",
+    "Gradle.UserControllerTest.executor": "Run",
+    "Gradle.UserControllerTest.testGetUsers.executor": "Run",
+    "Gradle.UserDAOImplTest.executor": "Run",
+    "Gradle.UserDAOImplTest.testGetAllUsers.executor": "Run",
+    "Gradle.UserDAOImplTest.testGetUserById.executor": "Run",
+    "Gradle.UserDAOImplTest.testUpdateUserById.executor": "Run",
+    "Gradle.crudAston [:Controller.main()].executor": "Run",
+    "Gradle.crudAston [:UserController.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.aston.crud.controller" />
+      <recent name="com.aston.crud.dao" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.aston.crud.controller" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.Tests in 'crudAston.test'">
+    <configuration name="ProductApiTest.testAddProduct" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.aston.crud.controller.ProductApiTest.testAddProduct&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProductApiTest.testGetAllProducts" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.aston.crud.controller.ProductApiTest.testGetAllProducts&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProductApiTest.testGetCategoryById" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.aston.crud.controller.ProductApiTest.testGetCategoryById&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProductApiTest.testUpdateProduct" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.aston.crud.controller.ProductApiTest.testUpdateProduct&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'crudAston.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Tests in 'crudAston.test'" />
+        <item itemvalue="Gradle.ProductApiTest.testUpdateProduct" />
+        <item itemvalue="Gradle.ProductApiTest.testAddProduct" />
+        <item itemvalue="Gradle.ProductApiTest.testGetAllProducts" />
+        <item itemvalue="Gradle.ProductApiTest.testGetCategoryById" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -54,6 +286,164 @@
       <option name="presentableId" value="Default" />
       <updated>1711021439309</updated>
     </task>
+    <task id="LOCAL-00001" summary="add DAO implementation">
+      <option name="closed" value="true" />
+      <created>1711291115431</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711291115431</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add tests for ProductDAOImpl">
+      <option name="closed" value="true" />
+      <created>1711299090807</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711299090807</updated>
+    </task>
+    <task id="LOCAL-00003" summary="wip">
+      <option name="closed" value="true" />
+      <created>1711313326809</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711313326809</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactor code: throw exceptions instead of printing sacktrace">
+      <option name="closed" value="true" />
+      <created>1711314714214</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711314714214</updated>
+    </task>
+    <task id="LOCAL-00005" summary="wip">
+      <option name="closed" value="true" />
+      <created>1711372527575</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711372527575</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Create test scenarios where inputs are at the extreme boundaries or null values">
+      <option name="closed" value="true" />
+      <created>1711375626697</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711375626697</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add testcontainers">
+      <option name="closed" value="true" />
+      <created>1711378202559</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711378202559</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add DTO and fix tests">
+      <option name="closed" value="true" />
+      <created>1711459536286</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711459536286</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Work with controllers">
+      <option name="closed" value="true" />
+      <created>1711491133789</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711491133789</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add Category and Product controllers">
+      <option name="closed" value="true" />
+      <created>1711496484762</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711496484762</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add Address controller">
+      <option name="closed" value="true" />
+      <created>1711497686749</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711497686749</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add UserController tests">
+      <option name="closed" value="true" />
+      <created>1711556695204</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711556695204</updated>
+    </task>
+    <task id="LOCAL-00013" summary="wip">
+      <option name="closed" value="true" />
+      <created>1711561998193</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711561998193</updated>
+    </task>
+    <task id="LOCAL-00014" summary="wip">
+      <option name="closed" value="true" />
+      <created>1711563154588</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1711563154588</updated>
+    </task>
+    <task id="LOCAL-00015" summary="wip">
+      <option name="closed" value="true" />
+      <created>1711567982772</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711567982772</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add README">
+      <option name="closed" value="true" />
+      <created>1711568917142</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1711568917142</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add DAO implementation" />
+    <MESSAGE value="add tests for ProductDAOImpl" />
+    <MESSAGE value="Refactor code: throw exceptions instead of printing sacktrace" />
+    <MESSAGE value="Create test scenarios where inputs are at the extreme boundaries or null values" />
+    <MESSAGE value="Add testcontainers" />
+    <MESSAGE value="Add DTO and fix tests" />
+    <MESSAGE value="Work with controllers" />
+    <MESSAGE value="Add Category and Product controllers" />
+    <MESSAGE value="Add Address controller" />
+    <MESSAGE value="Add UserController tests" />
+    <MESSAGE value="wip" />
+    <MESSAGE value="Add README" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add README" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/crudAston$Tests_in__crudAston_test_.ic" NAME="Tests in 'crudAston.test' Coverage Results" MODIFIED="1711443610380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
