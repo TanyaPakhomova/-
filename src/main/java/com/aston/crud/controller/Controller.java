@@ -1,22 +1,12 @@
 package com.aston.crud.controller;
 
-import com.aston.crud.dao.*;
-import com.aston.crud.dto.UserDTO;
-import com.aston.crud.entities.User;
-import com.aston.crud.util.DBConnection;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.eclipse.jetty.server.Request;
-import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
 
 public class Controller extends AbstractHandler {
 
@@ -25,41 +15,24 @@ public class Controller extends AbstractHandler {
     private final CategoryController categoryController;
     private final AddressController addressController;
 
+    public Controller(
+            UserController userController,
+            ProductController productController,
+            CategoryController categoryController,
+            AddressController addressController
+    ) {
+        this.userController = userController;
+        this.productController = productController;
+        this.categoryController = categoryController;
+        this.addressController = addressController;
+    }
+
     public Controller() throws SQLException {
         userController = new UserController();
         productController = new ProductController();
         categoryController = new CategoryController();
         addressController = new AddressController();
     }
-
-    public Controller(UserDAO userDAO) throws SQLException {
-        userController = new UserController(userDAO);
-        productController = new ProductController();
-        categoryController = new CategoryController();
-        addressController = new AddressController();
-    }
-
-    public Controller(AddressDAO addressDAO) throws SQLException {
-        userController = new UserController();
-        productController = new ProductController();
-        categoryController = new CategoryController();
-        addressController = new AddressController(addressDAO);
-    }
-
-    public Controller(CategoryDAO categoryDAO) throws SQLException{
-        userController = new UserController();
-        productController = new ProductController();
-        categoryController = new CategoryController(categoryDAO);
-        addressController = new AddressController();
-    }
-
-    public Controller(ProductDAO productDAO) throws SQLException{
-        userController = new UserController();
-        productController = new ProductController(productDAO);
-        categoryController = new CategoryController();
-        addressController = new AddressController();
-    }
-
 
     @Override
     public void handle(String s,

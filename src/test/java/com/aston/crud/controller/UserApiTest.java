@@ -33,7 +33,12 @@ public class UserApiTest {
         objectMapper = new ObjectMapper();
 
         server = new Server(8080);
-        server.setHandler(new Controller(userDAO));
+        server.setHandler(new Controller(
+                new UserController(userDAO),
+                new ProductController(),
+                new CategoryController(),
+                new AddressController()
+        ));
         server.start();
     }
 

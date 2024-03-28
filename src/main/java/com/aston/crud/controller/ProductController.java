@@ -3,14 +3,12 @@ package com.aston.crud.controller;
 import com.aston.crud.dao.ProductDAO;
 import com.aston.crud.dao.ProductDAOImpl;
 import com.aston.crud.dto.ProductDTO;
-import com.aston.crud.dto.UserDTO;
 import com.aston.crud.entities.Product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;

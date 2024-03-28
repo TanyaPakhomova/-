@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd6721a8-5241-4c24-a15a-b84eaf44111b" name="Changes" comment="wip">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/ProductApiTest.java" afterDir="false" />
+    <list default="true" id="fd6721a8-5241-4c24-a15a-b84eaf44111b" name="Changes" comment="Add README">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/crud/dto/AddressDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/crud/dto/AddressDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/AddressApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/AddressApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/CategoryApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/CategoryApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/ProductApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/ProductApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/UserApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/crud/controller/UserApiTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,31 +140,7 @@
       <recent name="com.aston.crud.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ProductApiTest.testUpdateProduct">
-    <configuration name="CategoryApiTest.testDeleteCategory" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.aston.crud.controller.CategoryApiTest.testDeleteCategory&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.Tests in 'crudAston.test'">
     <configuration name="ProductApiTest.testAddProduct" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -257,13 +237,35 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="Tests in 'crudAston.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Tests in 'crudAston.test'" />
         <item itemvalue="Gradle.ProductApiTest.testUpdateProduct" />
         <item itemvalue="Gradle.ProductApiTest.testAddProduct" />
         <item itemvalue="Gradle.ProductApiTest.testGetAllProducts" />
         <item itemvalue="Gradle.ProductApiTest.testGetCategoryById" />
-        <item itemvalue="Gradle.CategoryApiTest.testDeleteCategory" />
       </list>
     </recent_temporary>
   </component>
@@ -396,7 +398,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711563154588</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="wip">
+      <option name="closed" value="true" />
+      <created>1711567982772</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711567982772</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add README">
+      <option name="closed" value="true" />
+      <created>1711568917142</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1711568917142</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -422,7 +440,8 @@
     <MESSAGE value="Add Address controller" />
     <MESSAGE value="Add UserController tests" />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="Add README" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add README" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/crudAston$Tests_in__crudAston_test_.ic" NAME="Tests in 'crudAston.test' Coverage Results" MODIFIED="1711443610380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

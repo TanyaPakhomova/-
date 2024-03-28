@@ -35,7 +35,12 @@ public class AddressApiTest {
         objectMapper = new ObjectMapper();
 
         server = new Server(8080);
-        server.setHandler(new Controller(addressDAO));
+        server.setHandler(new Controller(
+                new UserController(),
+                new ProductController(),
+                new CategoryController(),
+                new AddressController(addressDAO)
+        ));
         server.start();
     }
 

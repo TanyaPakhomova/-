@@ -1,9 +1,7 @@
 package com.aston.crud.controller;
 
 import com.aston.crud.dao.ProductDAO;
-import com.aston.crud.entities.Category;
 import com.aston.crud.entities.Product;
-import com.aston.crud.entities.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.server.Server;
 import org.junit.jupiter.api.AfterEach;
@@ -35,7 +33,12 @@ public class ProductApiTest {
         objectMapper = new ObjectMapper();
 
         server = new Server(8080);
-        server.setHandler(new Controller(productDAO));
+        server.setHandler(new Controller(
+                new UserController(),
+                new ProductController(productDAO),
+                new CategoryController(),
+                new AddressController()
+        ));
         server.start();
     }
 

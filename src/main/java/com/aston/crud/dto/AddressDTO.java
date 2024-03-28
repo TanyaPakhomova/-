@@ -10,7 +10,8 @@ public class AddressDTO {
     private String postalCode;
     private int userId;
 
-    public AddressDTO() { }
+    public AddressDTO() {
+    }
 
     public AddressDTO(int id, String street, String city, String state, String postalCode, int userId) {
         this.id = id;
@@ -29,44 +30,44 @@ public class AddressDTO {
         this.id = id;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public String getStreet() {
         return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getCity() {
         return city;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public String getState() {
         return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getPostalCode() {
         return postalCode;
     }
 
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
     public int getUserId() {
         return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Override
